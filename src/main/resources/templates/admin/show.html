@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Человек</title>
+</head>
+<body>
+
+<p th:text="${user.getId()}">VALUE</p>
+<p th:text="${user.getUsername()}">VALUE</p>
+<p th:text="${user.getSurname()}">VALUE</p>
+<p th:text="${user.getDepartment()}">VALUE</p>
+<p th:text="${user.getSalary()}">VALUE</p>
+<br/>
+<a th:href="@{/admin/all-users/{id}/edit(id=${user.getId()})}">Edit</a>
+<br/>
+<br/>
+<form th:method="delete" th:action="@{/admin/all-users/{id}(id=${user.getId()})}">
+    <input type="submit" value="Delete">
+</form>
+</body>
+</html>
+
+

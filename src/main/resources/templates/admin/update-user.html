@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Update User</title>
+</head>
+<body>
+<div>
+    <form th:method="PATCH" th:action="@{/admin/all-users/{id}(id=${user.getId()})}" th:object="${user}">
+        <label for="name">Write your name: </label>
+        <input type="text" th:field="*{username}" id="name"/>
+        <br/>
+        <label for="surname">Write your surname: </label>
+        <input type="text" th:field="*{surname}" id="surname"/>
+        <br/>
+        <label for="password">Write your password: </label>
+        <input type="text" th:field="*{password}" id="password"/>
+        <br/>
+
+        <label for="salary">Enter salary: </label>
+        <input type="text" th:field="*{salary}" id="salary"/>
+        <br/>
+
+        <label for="department">Enter department: </label>
+        <input type="text" th:field="*{department}" id="department"/>
+        <br/>
+        <label for="roles">Select Roles:</label>
+        <select th:field="*{roles}" multiple="multiple">
+            <option th:each="role : ${allRoles}" th:value="${role.id}" th:text="${role.name}"></option>
+        </select>
+        <br/>
+        <input type="submit" value="Update!"/>
+    </form>
+</div>
+</body>
+</html>

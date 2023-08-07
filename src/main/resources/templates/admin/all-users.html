@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>All users</title>
+</head>
+<body>
+<div>
+    <th:block th:each="user : ${users}">
+        <a th:href="@{/admin/all-users/{id}(id=${user.getId()})}" th:text="${user.getUsername()}">USER</a>
+        <br/>
+    </th:block>
+</div>
+
+<br/>
+<hr/>
+
+<a href="/admin/all-user/new">Create new user</a>
+</body>
+</html>
