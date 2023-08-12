@@ -1,11 +1,20 @@
-package ru.kata.spring.boot_security.demo.model;
+package ru.kata.spring.boot_security.demo.models;
 
-
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import javax.persistence.*;
-import javax.validation.constraints.Size;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.GenerationType;
+import javax.persistence.ManyToMany;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.CascadeType;
 import java.util.Collection;
 import java.util.List;
 
@@ -18,26 +27,25 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id;
-    @Column(name = "Name")
-    @Size(min = 2, message = "Не меньше двух знаков")
+    @Column(name = "Name", unique = true, nullable = false)
     private String username;
 
-    @Column(name = "Password")
-    @Size(min = 2, message = "Не меньше двух знаков")
+    @Column(name = "Password", nullable = false)
     private String password;
-    @Column(name = "Surname")
+    @Column(name = "Surname", nullable = false)
     private String surname;
 
-    @Column(name = "Department")
+    @Column(name = "Department", nullable = false)
     private String department;
 
-    @Column(name = "Salary")
+    @Column(name = "Salary", nullable = false)
     private int salary;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @Fetch(FetchMode.JOIN)
     private List<Role> roles;
 
     public User() {

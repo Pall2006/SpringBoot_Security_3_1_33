@@ -16,6 +16,12 @@
 <br/>
 <hr/>
 
-<a href="/admin/all-user/new">Create new user</a>
+<a class="button" th:href="@{/admin/all-users/new}">Create new user</a>
+
+<br/>
+<br/>
+<form th:action="@{/logout}" method="post">
+    <button class="button" type="submit">Logout</button>
+</form>
 </body>
 </html>

@@ -6,7 +6,7 @@
     <title>Greeting</title>
 </head>
 <body>
-<h1>Приветствую тебя мой повелитель!!!</h1>
+<h1>Приветствую тебя Админ!!!</h1>
 <br/>
 <hr/>
 <a href="/admin/all-users/new">Create a new user</a>
@@ -14,6 +14,11 @@
 
 <a href="/admin/all-users">Look at all people</a>
 <br/>
+<br/>
+<br/>
+<form th:action="@{/logout}" method="post">
+    <button type="submit">Logout</button>
+</form>
 
 </body>
 </html>

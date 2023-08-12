@@ -8,30 +8,45 @@
 <body>
 <div>
     <form th:method="PATCH" th:action="@{/admin/all-users/{id}(id=${user.getId()})}" th:object="${user}">
-        <label for="name">Write your name: </label>
-        <input type="text" th:field="*{username}" id="name"/>
-        <br/>
-        <label for="surname">Write your surname: </label>
-        <input type="text" th:field="*{surname}" id="surname"/>
-        <br/>
-        <label for="password">Write your password: </label>
-        <input type="text" th:field="*{password}" id="password"/>
-        <br/>
-
-        <label for="salary">Enter salary: </label>
-        <input type="text" th:field="*{salary}" id="salary"/>
-        <br/>
-
-        <label for="department">Enter department: </label>
-        <input type="text" th:field="*{department}" id="department"/>
-        <br/>
-        <label for="roles">Select Roles:</label>
-        <select th:field="*{roles}" multiple="multiple">
-            <option th:each="role : ${allRoles}" th:value="${role.id}" th:text="${role.name}"></option>
-        </select>
-        <br/>
-        <input type="submit" value="Update!"/>
+        <table>
+            <tr>
+                <td><label for="name">Write your name: </label></td>
+                <td><input type="text" th:field="*{username}" id="name"/></td>
+            </tr>
+            <tr>
+                <td><label for="surname">Write your surname: </label></td>
+                <td><input type="text" th:field="*{surname}" id="surname"/></td>
+            </tr>
+            <tr>
+                <td><label for="password">Write your password: </label></td>
+                <td><input type="text" th:field="*{password}" id="password"/></td>
+            </tr>
+            <tr>
+                <td><label for="salary">Enter salary: </label></td>
+                <td><input type="text" th:field="*{salary}" id="salary"/></td>
+            </tr>
+            <tr>
+                <td><label for="department">Enter department: </label></td>
+                <td><input type="text" th:field="*{department}" id="department"/></td>
+            </tr>
+            <tr>
+                <td><label for="roles">Select role:</label></td>
+                <td>
+                    <select th:field="*{roles}" multiple="multiple" id="roles">
+                        <option th:each="role : ${allRoles}" th:value="${role.id}" th:text="${role.name}"></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Update!"/></td>
+            </tr>
+        </table>
     </form>
 </div>
+<br/>
+<br/>
+<form th:action="@{/logout}" method="post">
+    <button type="submit">Logout</button>
+</form>
 </body>
 </html>
