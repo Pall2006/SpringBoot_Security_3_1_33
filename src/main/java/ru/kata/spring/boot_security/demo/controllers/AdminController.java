@@ -37,7 +37,6 @@ public class AdminController {
     public String getAdminProfile(Model model, Principal principal) {
         if (principal != null) {
             String username = principal.getName(); // Получение имени пользователя из Principal
-
             model.addAttribute("user", userService.findByUsername(username));
         }
         return "user";
